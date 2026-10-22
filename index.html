@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <h1>Le Ciné du Village</h1>
+      <h1 class="site-logo"><a href="index.html"><span class="logo-icon">🎬</span> Le Ciné du Village</a></h1>
       <nav>
         <a href="index.html">Accueil</a>
         <a href="search.html">Rechercher un film</a>
@@ -17,9 +17,11 @@
 
     <main>
       <h2>Films à l’affiche</h2>
-      <p id="home-message">Les films seront bientôt affichés ici.</p>
-      <section id="movies"></section>
+      <p class="intro-text">Découvrez notre sélection de films au cinéma du village.</p>
+      <p id="home-message">Chargement des films...</p>
+      <section id="movies" class="movie-list"></section>
       <button id="load-more" type="button">Charger plus de films</button>
     </main>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>

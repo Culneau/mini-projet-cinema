@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <h1>Le Ciné du Village</h1>
+      <h1 class="site-logo"><a href="index.html"><span class="logo-icon">🎬</span> Le Ciné du Village</a></h1>
       <nav>
         <a href="index.html">Accueil</a>
         <a href="search.html">Rechercher un film</a>
@@ -18,10 +18,11 @@
     <main>
       <h2>Rechercher un film</h2>
       <label for="search-input">Nom du film :</label>
-      <input id="search-input" type="search" placeholder="Exemple : Transformers">
-      <p id="search-message"></p>
-      <section id="search-results"></section>
+      <input id="search-input" type="search" placeholder="Exemple : Transformers" autocomplete="off">
+      <p id="search-message" aria-live="polite">Tape au moins deux lettres pour commencer.</p>
+      <section id="search-results" class="movie-list"></section>
       <button id="load-more" type="button" hidden>Charger plus de résultats</button>
     </main>
+    <script type="module" src="js/search.js"></script>
   </body>
 </html>

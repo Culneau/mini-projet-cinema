@@ -106,6 +106,22 @@ button:disabled {
   box-shadow: 0 8px 24px #000;
 }
 
+#movies .movie-card {
+  animation: show-movie-card 0.45s ease-out both;
+  animation-delay: var(--card-delay, 0ms);
+}
+
+@keyframes show-movie-card {
+  from {
+    opacity: 0;
+    translate: var(--card-slide, -18px) 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
 .movie-card img {
   width: 100%;
   height: 320px;
@@ -181,5 +197,11 @@ button:disabled {
 
   .movie-details > img {
     max-width: 250px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #movies .movie-card {
+    animation: none;
   }
 }

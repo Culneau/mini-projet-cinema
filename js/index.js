@@ -53,6 +53,23 @@ function createMovieCard(movie) {
   return { card, title, year, plot, posterPlaceholder };
 }
 
+function animateCards(cards) {
+  const columns = getComputedStyle(moviesElement).gridTemplateColumns.split(" ").length;
+  const firstCard = moviesElement.children.length - cards.length;
+
+  cards.forEach((cardElements, index) => {
+    const position = firstCard + index;
+    const row = Math.floor(position / columns);
+    const column = position % columns;
+    const rowStart = index - column;
+    const positionInRow = row % 2 === 0 ? column : columns - column - 1;
+    const delay = rowStart + positionInRow;
+
+    cardElements.card.style.setProperty("--card-delay", delay * 100 + "ms");
+    cardElements.card.style.setProperty("--card-slide", row % 2 === 0 ? "-18px" : "18px");
+  });
+}
+
 function showMovie(movie, cardElements) {
   cardElements.title.textContent = movie.Title;
   cardElements.year.textContent = "Année : " + movie.Year;
@@ -114,9 +131,11 @@ async function loadMovies() {
   const moviesToLoad = movies.slice(nextMovie, nextMovie + moviesPerLoad);
   nextMovie += moviesToLoad.length;
 
-  const results = await Promise.all(moviesToLoad.map((movie) => {
-    const cardElements = createMovieCard(movie);
-    return loadMovie(movie, cardElements);
+  const cards = moviesToLoad.map((movie) => createMovieCard(movie));
+  animateCards(cards);
+
+  const results = await Promise.all(moviesToLoad.map((movie, index) => {
+    return loadMovie(movie, cards[index]);
   }));
 
   if (results.every((result) => result === false)) {

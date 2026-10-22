@@ -1,0 +1,1 @@
+export const API_KEY = "REMPLACER_PAR_VOTRE_CLE_OMDB";
